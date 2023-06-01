@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Contagem Regressiva para a Abertura da Tabacaria do Jackboquete</title>
+  <style>
+    body {
+      font-family: 'Arial Black', Arial, sans-serif;
+      text-align: center;
+      background-color: #2c2419;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-top: 20px;
+      color: #807351;
+    }
+
+    #countdown-container {
+      background-color: #2c2419;
+      padding: 20px;
+      display: inline-block;
+      border-radius: 15px;
+    }
+
+    #countdown {
+      font-size: 72px;
+      font-weight: 700;
+      color: #807351;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <img style="width: 450px;" src="logo.jpeg">
+  </div>
+  <h1>Tempo restante para atrasar a inauguração da tabacaria</h1>
+  <div id="countdown-container">
+    <div id="countdown"></div>
+  </div>
+
+  <script>
+    // Define a data de término da contagem regressiva (16/06/2023)
+    var endDate = new Date("June 16, 2023 00:00:00").getTime();
+
+    // Atualiza o relógio a cada segundo
+    var countdown = setInterval(function () {
+      // Obtém a data e hora atual
+      var now = new Date().getTime();
+
+      // Calcula a diferença entre a data de término e a data atual
+      var timeRemaining = endDate - now;
+
+      // Calcula dias, horas, minutos e segundos restantes
+      var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+      // Formata os valores com dois dígitos (ex: 03d, 05h, 09m, 07s)
+      days = ("0" + days).slice(-2);
+      hours = ("0" + hours).slice(-2);
+      minutes = ("0" + minutes).slice(-2);
+      seconds = ("0" + seconds).slice(-2);
+
+      // Exibe o resultado no elemento de contagem regressiva
+      document.getElementById("countdown").innerHTML = days + ":" + hours + ":" + minutes + ":" + seconds;
+
+      // Verifica se a data de término foi alcançada
+      if (timeRemaining < 0) {
+        clearInterval(countdown);
+        document.getElementById("countdown").innerHTML = "EXPIRADO";
+      }
+    }, 1000);
+  </script>
+</body>
+
+</html>
